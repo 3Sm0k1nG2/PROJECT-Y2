@@ -1,0 +1,98 @@
+.slider {
+    width: 80%;
+    margin: auto;
+    max-height: 180px;
+}
+
+.slider a {
+    width: 100%;
+    height: 100%;
+
+    text-decoration: none;
+    color: white;
+}
+
+.slider > div {
+    display: flex;
+    text-align: center;
+}
+
+.slider > h1 {
+}
+
+.slider .thumbnail {
+}
+
+.slider .video {
+    width: 320px;
+    height: 180px;
+
+    max-width: 320px;
+    max-height: 180px;
+
+    text-align: center;
+
+    background-color: black;
+    color: white;
+
+    padding: 4.8px;
+
+    z-index: 0;
+}
+
+.slider .video .description {
+    position: relative;
+    top:-184px;
+
+    width: 320px;
+    height: 180px;
+
+    padding-top: 0px;
+    margin: auto;
+
+    color: white;
+    background-color: black;
+    opacity: 0%;
+    font-size: 18px;
+    text-shadow: 1px -1px rebeccapurple;
+
+    overflow:hidden;
+}
+
+.slider .video .description:hover {
+    opacity: 70%;
+}
+
+.slider .video .description .channelTitle {
+    max-width: inherit;
+    max-height: inherit;
+
+    margin: 0;
+    margin-bottom: 2em;
+
+    font-size: 15px;
+    text-decoration: overline;
+
+    color: white;
+}
+
+.slider .video .description .title {
+    max-width: inherit;
+    max-height: inherit;
+
+    position: relative;
+    top:16px;
+
+    color: white;
+    text-decoration: none;
+
+    font-size: 150%
+}
+
+.slider .avatar {
+    position: absolute;
+    top: 81px;
+    margin-left: -46px;
+
+    border: solid 2px black;
+}

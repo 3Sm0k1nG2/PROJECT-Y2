@@ -14,9 +14,6 @@ export const Navbar = () => {
             {hasUser &&
                 <Link to="/logout" >Logout</Link>
             }
-
-            <Link to="/video/:videoId"></Link>
-            <Link to="/channel/:videoId"></Link>
         </nav>
     );
 }

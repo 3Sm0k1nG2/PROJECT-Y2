@@ -11,22 +11,23 @@ const methods = {
 const requester = (method, url, data, token) => {
 
     if (method === methods.get) {
+        if(!data){
+
+            return fetch(url, {
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                    'Referer': 'no-referrer'
+                }
+            });
+        }
+
         data.key = process.env.REACT_APP_GOOGLE_API_KEY
 
-        let queryParams = '';
+        let queryParams = Object.entries(data).map(x => `${x[0]}=${x[1].replaceAll(', ', '%2C%20')}`);
 
-        for (let key in data) {
-            queryParams += `${key}=${data[key].replace(', ','%2C')}&`;
-        }
-        queryParams = queryParams.slice(0,-1);
-
-        console.log(queryParams);
-        // console.log(queryParams.join('&'));
-
-        let urlWithQueryParams = `${url}?${queryParams}`
+        let urlWithQueryParams = `${url}?${queryParams.join('&')}`
         console.log(urlWithQueryParams);
         return fetch(urlWithQueryParams);
-
     }
 
     const headers = {}

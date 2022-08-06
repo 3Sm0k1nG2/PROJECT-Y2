@@ -1,7 +1,7 @@
 import { useState, useEffect, } from "react";
 
 import * as youtubeService from '../../services/youtube/videoService';
-import { Slider } from "./videos/slider/Slider";
+import { Playlist } from "../playlist/Playlist";
 
 export const Home = () => {
     const [videos, setVideos] = useState([]);
@@ -18,7 +18,9 @@ export const Home = () => {
         <>
             <h1>Home</h1>
 
-            <Slider title={'Most popular videos'} videos={videos} />
+            <Playlist title={'Most popular videos'} videos={videos} />
+            <Playlist videos={videos} />
+            <Playlist videos={videos} />
         </>
     );
 } 

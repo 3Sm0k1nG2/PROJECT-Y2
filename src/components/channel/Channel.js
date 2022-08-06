@@ -9,15 +9,22 @@ export const Channel = () => {
 
     useEffect(() => {
         channelService.get({ part: 'snippet, statistics', id: channelId })
-            .then(result => setChannel(result.items[0]));
+            .then(result => {setChannel(result.items?.[0])});
     }, []);
+
+
+    if(!channel){
+        return (
+            <h1> Channel not found! </h1>
+        );
+    }
 
     return (
         <>
             <h1>Channel</h1>
             <div>
                 {channel.snippet &&
-                    <img src={channel.snippet?.thumbnails.medium.url} />
+                    <img src={channel.snippet?.thumbnails.medium.url} referrerPolicy="no-referrer"/>
                 }
             </div>
         </>

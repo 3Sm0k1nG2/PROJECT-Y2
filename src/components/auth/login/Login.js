@@ -10,7 +10,7 @@ export const Login = () => {
 
     useEffect(() => {
         renderSignButtonInDiv('sign-in');
-    }, []);
+    }, [hasUser]);
 
     return (
         <>

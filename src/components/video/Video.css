@@ -1,0 +1,43 @@
+.video {
+    text-align: center;
+
+    height: 100%;
+}
+
+.video iframe#ytplayer {
+    transition: all 200ms;
+
+    max-width: 935px;
+    max-height: 525px;
+
+    min-width: 400px;
+    min-height: 300px;
+}
+
+@media screen and (max-width: 500px) {
+    .video iframe#ytplayer {
+        width: 400px;
+        height: 300px;
+    }
+}
+
+@media screen and (min-width: 501px) {
+    .video iframe#ytplayer {
+        width: 60%;
+        height: 300px;
+    }
+}
+
+@media screen and (min-width: 890px) {
+    .video iframe#ytplayer {
+        width: 60%;
+        height: 400px;
+    }
+}
+
+/* @media screen and (min-width: 1400px) {
+    iframe#ytplayer {
+        width: 935px;
+        height: 525px;
+    }
+} */

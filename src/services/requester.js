@@ -23,7 +23,8 @@ const requester = (method, url, data, token) => {
 
         data.key = process.env.REACT_APP_GOOGLE_API_KEY
 
-        let queryParams = Object.entries(data).map(x => `${x[0]}=${x[1].replaceAll(', ', '%2C%20')}`);
+        // x[1].toString() may cause a BUG, when data isn't string or number.
+        let queryParams = Object.entries(data).map(x => `${x[0]}=${x[1].toString().replaceAll(', ', '%2C%20')}`);
 
         let urlWithQueryParams = `${url}?${queryParams.join('&')}`
         console.log(urlWithQueryParams);

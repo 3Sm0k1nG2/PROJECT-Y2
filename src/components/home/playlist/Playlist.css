@@ -49,13 +49,16 @@
     z-index: 0;
 }
 
+.playlist .video .thumbnail {
+    width: 320px;
+    height: 180px;
+}
 
 .playlist .video .description {
     position: relative;
     bottom: calc(
         var(--video-height) 
         + (var(--video-margin-top-and-bottom) * 2) 
-        + (var(--video-padding) * 2)
     );
 
     width: inherit;
@@ -116,7 +119,6 @@
     bottom: calc( 
         (var(--avatar-size) + (var(--avatar-border-size) * 2)) 
         + var(--video-height) 
-        + (var(--video-padding) * 2)
         + (var(--video-margin-top-and-bottom) * 2) 
     );
     left: calc(
@@ -135,3 +137,4 @@
     border-top-left-radius: calc(var(--avatar-border-top-radius) - var(--avatar-border-size));
     border-top-right-radius: calc(var(--avatar-border-top-radius) - var(--avatar-border-size));
 }
+

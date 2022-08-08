@@ -3,8 +3,7 @@ import { useParams } from "react-router-dom";
 
 import './Video.css';
 
-import * as videoService from '../../services/youtube/videoService';
-import * as commentService from '../../services/youtube/commentService';
+import * as youtubeService from '../../services/youtubeService';
 
 import { Spinner } from "../common/spinner/Spinner";
 import { Player } from "../common/player/Player";
@@ -27,18 +26,18 @@ export const Video = () => {
         if (!videoId)
             return;
 
-        videoService.get({
+        youtubeService.get.channel({
             part: 'snippet, statistics',
             id: videoId
         })
             .then(result => { setVideo(result.items[0] || {}) })
             .finally(() => { setIsLoading(false) });
 
-        commentService.get({
+        youtubeService.get.commentThread({
             part: 'snippet',
             videoId: videoId
         })
-            .then(result => { setComments(result.items || [])})
+            .then(result => { setComments(result.items || []) })
     }, []);
 
     if (isLoading) {
@@ -47,10 +46,10 @@ export const Video = () => {
 
     return (
         <div className="video">
-            <Player title={video.title} videoId={video.id}/>
+            <Player title={video.title} videoId={video.id} />
             <VideoMoreVideos />
             <VideoDescription description={video.description} />
-            <VideoComments comments={comments}/>
+            <VideoComments comments={comments} />
         </div>
     );
 }

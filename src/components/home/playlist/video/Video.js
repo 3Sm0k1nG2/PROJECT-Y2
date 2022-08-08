@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import * as channelService from '../../../services/youtube/channelService';
+import * as youtubeService from '../../../../services/youtubeService';
 import { Avatar } from './Avatar';
 
-import { Spinner } from '../../common/spinner/Spinner';
+import { Spinner } from '../../../common/spinner/Spinner';
 
 export const Video = ({
     video
@@ -14,14 +14,12 @@ export const Video = ({
     const [channel, setChannel] = useState(null);
 
     const loadChannel = () => {
-        channelService.get({ part: 'snippet', id: video.channelId })
+        youtubeService.get.channel({ part: 'snippet', id: video.channelId })
             .then(result => setChannel({ ...result.items?.[0].snippet, id: result.items?.[0].id }));
     }
 
     const channelPreviewHandler = async (e) => {
-        console.log(e);
-
-        if(e.type === 'touchstart')
+        if (e.type === 'touchstart')
             setShowDescription(false);
 
         if (!channel)
@@ -31,7 +29,7 @@ export const Video = ({
     }
 
     const hideAvatar = (e) => {
-        if(e.type === 'touchend')
+        if (e.type === 'touchend')
             setShowDescription(true);
 
         setShowAvatar(false);
@@ -39,7 +37,9 @@ export const Video = ({
 
     return (
         <div className='video'>
-            <img className='thumbnail' src={video.thumbnails.medium.url} referrerPolicy="no-referrer" />
+            <div className='thumbnail'>
+                <img src={video.thumbnails.medium.url} referrerPolicy="no-referrer" />
+            </div>
 
             <div className='avatar' hidden={!showAvatar}>
                 {channel ?

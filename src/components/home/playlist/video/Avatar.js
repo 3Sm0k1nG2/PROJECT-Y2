@@ -1,14 +1,12 @@
 import { Link } from "react-router-dom";
 
-import { Spinner } from "../../common/spinner/Spinner"
+import { Spinner } from "../../../common/spinner/Spinner"
 
 export const Avatar = ({
     channelId,
     avatarUrl,
     channelName
 }) => {
-    console.log(channelId);
-
     if (!channelId) {
         return <Spinner />
     }

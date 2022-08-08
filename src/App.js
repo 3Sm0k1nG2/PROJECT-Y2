@@ -18,19 +18,21 @@ export default function App() {
         <GoogleAuthProvider>
             <Navbar />
 
-            <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/login" element={<Login />} />
+            <main>
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/login" element={<Login />} />
 
-                <Route element={<PrivateGuard />}>
-                    <Route path="/logout" element={<Logout />} />
-                </Route>
+                    <Route element={<PrivateGuard />}>
+                        <Route path="/logout" element={<Logout />} />
+                    </Route>
 
-                <Route path="/video/:videoId" element={<Video />}></Route>
-                <Route path="/channel/:channelId" element={<Channel />}></Route>
+                    <Route path="/video/:videoId" element={<Video />}></Route>
+                    <Route path="/channel/:channelId" element={<Channel />}></Route>
 
-                <Route path="*" element={<h1>Not Found!</h1>} />
-            </Routes>
+                    <Route path="*" element={<h1>Not Found!</h1>} />
+                </Routes>
+            </main>
         </GoogleAuthProvider>
     );
 }

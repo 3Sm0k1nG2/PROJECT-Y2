@@ -1,0 +1,67 @@
+.categories {
+    --categories-height: 75px;
+
+    user-select: none;
+
+    display: flex;
+    justify-content: space-evenly;
+    height: var(--categories-height);
+}
+
+.categories > * {
+    --width: 50px;
+    width: var(--width,100%);
+}
+
+.categories > button {
+    --category-margin: 10px;
+    --category-padding-top-and-bottom: 5px;
+    --category-padding-left-and-right: 10px;
+    --category-border-size: 2px;
+    --category-font-size: 15px;
+
+    --category-height: calc(
+        var(--categories-height) 
+        - (
+            (var(--category-border-size) * 2) 
+            + (var(--category-padding-top-and-bottom) * 2) 
+            + (var(--category-margin) * 2)
+          )
+    );
+
+    font-size: 100%;
+    max-height: var(--category-height);
+    min-height: 25px;
+
+    width: fit-content;
+    height: fit-content;
+    
+    text-align: center;
+    line-height: calc(var(--category-height) / 2);
+
+    display: inline-block;
+    margin: var(--category-margin);
+
+    padding: var(--category-padding-top-and-bottom) var(--category-padding-left-and-right);
+
+    border: solid var(--category-border-size) greenyellow;
+    border-radius: 32px;
+
+    background-color: black;
+    color: greenyellow;
+}
+
+.categories > button:hover {
+    /* background-color: rgb(50,50,50); */
+    background-color: greenyellow;
+    border-color: black;
+
+    color: black;
+    transition: all 250ms;
+    transform: scale(110%);
+}
+
+.categories > svg {
+    margin: 15px 5px;
+
+}

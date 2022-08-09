@@ -1,15 +1,17 @@
 import { Video } from "./video/Video";
 
-import './Playlist.css'
+import styles from './Playlist.module.css';
 
 export const Playlist = ({
     title,
     videos
 }) => {
+    console.log(styles);
+
     return (
-        <div className="playlist">
+        <div className={styles.playlist}>
             {title && <h1>{title}</h1>}
-            <div className="videos">
+            <div className={styles.videos}>
                 {videos.map(x => <Video key={x.id} video={{...x.snippet, id: x.id}} statistics={x.statistics} />)}
             </div>
         </div>

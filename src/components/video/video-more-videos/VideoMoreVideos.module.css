@@ -1,0 +1,35 @@
+.more-videos {
+    width: 100%;
+    height: 100%;
+
+    display: inline-block;
+}
+
+.more-videos > div {
+    width: 100%;
+    height: 50px;
+
+    background-color: pink;
+    border: solid 1px white;
+}
+
+.more-videos > img {
+
+    /* "default": {
+        "url": "https://i.ytimg.com/vi/pQcFCFZIuZI/default.jpg",
+        "width": 120,
+        "height": 90
+      },
+      "medium": {
+        "url": "https://i.ytimg.com/vi/pQcFCFZIuZI/mqdefault.jpg",
+        "width": 320,
+        "height": 180
+      },
+      "high": {
+        "url": "https://i.ytimg.com/vi/pQcFCFZIuZI/hqdefault.jpg",
+        "width": 480,
+        "height": 360
+      } */
+    width: 160px;
+    height: 90px;
+}

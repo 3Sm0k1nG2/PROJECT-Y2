@@ -1,7 +1,6 @@
-import './Login.css';
-
 import { useEffect } from "react";
 
+import styles from './Login.module.css';
 
 import { useGoogleAuthContext } from "../../../hooks/useGoogleAuthContext";
 
@@ -9,16 +8,16 @@ export const Login = () => {
     const { user, hasUser, renderSignButtonInDiv } = useGoogleAuthContext();
 
     useEffect(() => {
-        renderSignButtonInDiv('sign-in');
+        renderSignButtonInDiv(styles['sign-in']);
     }, [hasUser]);
 
     return (
         <>
             <h1>Login</h1>
-            <div id="sign-in" />
+            <div id={styles['sign-in']} />
 
             {hasUser &&
-                <div className='signed-section'>
+                <div className={styles['signed-section']}>
                     <h3> Currently logged as: </h3>
                     <img src={user.picture} alt={user.name} referrerPolicy="no-referrer" />
                 </div>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Arrow } from "../../common/arrows/Arrow";
 
-import './Categories.css';
+import styles from './Categories.module.css';
 
 import { Category } from "./category/Category";
 
@@ -28,7 +28,7 @@ export const Categories = ({
     }
 
     return (
-        <div className="categories">
+        <div className={styles.categories}>
             {lastIndex > maxShownCategories &&
                 <Arrow arrowOnClickHandler={prevPage} />
             }

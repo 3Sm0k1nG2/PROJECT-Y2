@@ -1,7 +1,15 @@
+import styles from './VideoDescription.module.css';
 
+export const VideoDescription = ({
+    description,
+    channel
+}) => {
+    console.log('desc: ', description);
+    console.log('chan: ', channel);
 
-export const VideoDescription = () => {
     return (
-        <h3>Description</h3>
+        <div className={styles.description}>
+            <h3>Description</h3>
+        </div>
     );
 }

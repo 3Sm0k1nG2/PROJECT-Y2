@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
+import styles from './Video.module.css';
+
 import * as youtubeService from '../../../../services/youtubeService';
 import { Avatar } from './Avatar';
 
@@ -14,7 +16,10 @@ export const Video = ({
     const [channel, setChannel] = useState(null);
 
     const loadChannel = () => {
-        youtubeService.get.channel({ part: 'snippet', id: video.channelId })
+        youtubeService.get.channels({
+            part: 'snippet',
+            id: video.channelId
+        })
             .then(result => setChannel({ ...result.items?.[0].snippet, id: result.items?.[0].id }));
     }
 
@@ -36,12 +41,12 @@ export const Video = ({
     }
 
     return (
-        <div className='video'>
-            <div className='thumbnail'>
+        <div className={styles.video}>
+            <div className={styles.thumbnail}>
                 <img src={video.thumbnails.medium.url} referrerPolicy="no-referrer" />
             </div>
 
-            <div className='avatar' hidden={!showAvatar}>
+            <div className={styles.avatar} hidden={!showAvatar}>
                 {channel ?
                     <Avatar
                         channelId={channel.id}
@@ -53,21 +58,21 @@ export const Video = ({
                 }
             </div>
 
-            <div className='description'
+            <div className={styles.description}
                 onTouchStart={channelPreviewHandler}
                 onTouchEnd={hideAvatar}
                 hidden={!showDescription}
             >
                 <Link
                     to={`/channel/${video.channelId}`}
-                    className='channelTitle'
+                    className={styles.channelTitle}
                     onMouseEnter={channelPreviewHandler}
                     onMouseOut={hideAvatar}
                 >
                     {video.channelTitle}
                 </Link>
 
-                <Link to={`/video/${video.id}`} className='title'>
+                <Link to={`/video/${video.id}`} className={styles.title}>
                     {video.title}
                 </Link>
             </div>

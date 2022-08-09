@@ -1,0 +1,9 @@
+.comments {
+    display: block;
+    text-align: left;
+    background-color: aqua;
+}
+
+.comments > div {
+    border: solid 1px white;
+}

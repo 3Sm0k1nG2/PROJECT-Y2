@@ -8,7 +8,7 @@ export const Channel = () => {
     const [channel, setChannel] = useState({});
 
     useEffect(() => {
-        youtubeService.get.channel({ part: 'snippet, statistics', id: channelId })
+        youtubeService.get.channels({ part: 'snippet, statistics', id: channelId })
             .then(result => {setChannel(result.items?.[0])});
     }, []);
 

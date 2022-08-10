@@ -1,20 +1,33 @@
 import * as process from '../process';
 
+export const VALID_METHODS = {
+    GET: 'GET',
+    POST: 'POST',
+    PUT: 'PUT',
+    DEL: 'DELETE'
+};
 
-const methods = {
-    get: 'GET',
-    post: 'POST',
-    put: 'PUT',
-    del: 'DELETE'
-}
+const requester = (method, url, headers = {}, data = {}) => {
 
-const requester = (method, url, data, token) => {
+    if (!VALID_METHODS.hasOwnProperty(method))
+        throw new Error(`Invalid method. Valid methods are: ${Object.values(VALID_METHODS).join(', ')}`);
 
-    if (method === methods.get) {
-        if(!data){
+    const options = {
+        method,
+        headers,
+    }
+
+    if(Object.values(data) > 0)
+        options.body = JSON.stringify(data);
+
+    return fetch(url, options);
+
+    if (method === VALID_METHODS.get) {
+        if (!data) {
 
             return fetch(url, {
                 headers: {
+                    ...headers,
                     'Access-Control-Allow-Origin': '*',
                     'Referer': 'no-referrer'
                 }
@@ -28,13 +41,15 @@ const requester = (method, url, data, token) => {
 
         let urlWithQueryParams = `${url}?${queryParams.join('&')}`
         console.log(urlWithQueryParams);
-        return fetch(urlWithQueryParams);
+        return fetch(urlWithQueryParams, {
+            headers
+        });
     }
 
-    const headers = {}
-
-    headers.Authorization = `Bearer ${token}`;
-    headers['Content-Type'] = 'application/json';
+    headers = {
+        'Content-Type': 'application/json',
+        ...headers,
+    }
 
     return fetch(url, {
         method,
@@ -43,7 +58,10 @@ const requester = (method, url, data, token) => {
     });
 }
 
-export const get = requester.bind(null, methods.get);
-export const post = requester.bind(null, methods.post);
-export const put = requester.bind(null, methods.put);
-export const del = requester.bind(null, methods.del);
+
+export default {
+    get: requester.bind(null, VALID_METHODS.GET),
+    post: requester.bind(null, VALID_METHODS.POST),
+    put: requester.bind(null, VALID_METHODS.PUT),
+    del: requester.bind(null, VALID_METHODS.DEL)
+};

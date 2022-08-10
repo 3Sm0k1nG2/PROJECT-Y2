@@ -12,9 +12,21 @@ import { GoogleAuthProvider } from './contexts/GoogleAuthContext';
 import { Video } from './components/video/Video';
 import { Channel } from './components/channel/Channel';
 
+import { useDispatch, useSelector } from 'react-redux';
+import { useCallback, useEffect } from 'react';
+import { initialize } from './features/auth/authSlice';
+
 export default function App() {
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(initialize());
+    },[])
+
     return (
-        <GoogleAuthProvider>
+        // <GoogleAuthProvider>
+        <>
             <Navbar />
 
             <main>
@@ -32,6 +44,7 @@ export default function App() {
                     <Route path="*" element={<h1>Not Found!</h1>} />
                 </Routes>
             </main>
-        </GoogleAuthProvider>
+        </>
+        // </GoogleAuthProvider>
     );
 }

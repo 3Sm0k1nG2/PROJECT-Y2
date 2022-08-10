@@ -1,3 +1,8 @@
+# Implement Redux (NEEDS FIXING)
+ERROR: A non-serializable value was detected in the state
+READ: https://redux.js.org/faq/organizing-state#can-i-put-functions-promises-or-other-non-serializable-items-in-my-store-state
+MORE: REMOVE GOOGLE AUTH
+
 ## Video
 
 - Fix css after all other sub-components are done.

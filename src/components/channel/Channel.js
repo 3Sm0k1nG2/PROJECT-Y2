@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-import * as youtubeService from '../../services/youtubeService';
+import youtubeService from '../../services/youtubeService';
 
 export const Channel = () => {
     const { channelId } = useParams();

@@ -1,6 +1,6 @@
 import { useState, useEffect, } from "react";
 
-import * as youtubeService from '../../services/youtubeService';
+import youtubeService from '../../services/youtubeService';
 
 import { Playlist } from "./playlist/Playlist";
 import { Categories } from "./categories/Categories";

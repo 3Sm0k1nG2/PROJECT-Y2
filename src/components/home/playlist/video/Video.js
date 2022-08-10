@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import styles from './Video.module.css';
 
-import * as youtubeService from '../../../../services/youtubeService';
+import youtubeService from '../../../../services/youtubeService';
 import { Avatar } from './Avatar';
 
 import { Spinner } from '../../../common/spinner/Spinner';

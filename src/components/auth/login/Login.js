@@ -2,26 +2,38 @@ import { useEffect } from "react";
 
 import styles from './Login.module.css';
 
+import { useSelector, useDispatch } from 'react-redux';
+
 import { useGoogleAuthContext } from "../../../hooks/useGoogleAuthContext";
+import { requestAccessToken } from "../../../features/auth/authSlice";
 
 export const Login = () => {
-    const { user, hasUser, renderSignButtonInDiv } = useGoogleAuthContext();
+    const { hasUser } = useSelector(state => state.googleAuth)
+    const dispatch = useDispatch();
+    // const { hasUser, /* renderSignButtonInDiv, */ requestAccessToken } = useGoogleAuthContext();
 
-    useEffect(() => {
-        renderSignButtonInDiv(styles['sign-in']);
-    }, [hasUser]);
+    // useEffect(() => {
+    //     renderSignButtonInDiv(styles['sign-in']);
+    // }, []);
+
+    function handleSignIn() {
+        dispatch(requestAccessToken())
+    }
 
     return (
         <>
             <h1>Login</h1>
-            <div id={styles['sign-in']} />
+            {/* <div id={styles['sign-in']} /> */}
+            <button onClick={handleSignIn}>{hasUser ? 'Signed as ...' : 'Sign in with YouTube'}</button>
 
-            {hasUser &&
+            {/* {hasUser &&
                 <div className={styles['signed-section']}>
                     <h3> Currently logged as: </h3>
                     <img src={user.picture} alt={user.name} referrerPolicy="no-referrer" />
                 </div>
-            }
+            } */}
+
+
         </>
     )
 }

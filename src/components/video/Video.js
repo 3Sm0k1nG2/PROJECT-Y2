@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 
 import styles from './Video.module.css';
 
-import * as youtubeService from '../../services/youtubeService';
+import youtubeService from '../../services/youtubeService';
 
 import { Spinner } from "../common/spinner/Spinner";
 import { Player } from "../common/player/Player";

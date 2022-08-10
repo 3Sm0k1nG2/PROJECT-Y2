@@ -1,43 +1,60 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 import jwtDecoder from 'jwt-decode';
 
-import * as process from '../process';
+import { env, scopes } from '../process';
+
+import { useLocalStorage } from '../hooks/useLocalStorage';
 
 export const GoogleAuthContext = createContext({});
 
 export const GoogleAuthProvider = ({ children }) => {
-    const [user, setUser] = useState({});
+    /* global google */
+
+    const [client, setClient] = useState({});
+    const [accessToken, setAccessToken] = useLocalStorage('accessToken', '');
     const [hasUser, setHasUser] = useState(false);
 
-    initialize();
+    useEffect(() => { initialize() }, []);
 
-    function initialize () {
-        window.google.accounts.id.initialize({
-            client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
-            callback: handleCredentialResponse
-        });
+    useEffect(() => {setHasUser(Boolean(accessToken))}, [accessToken])
+
+    const initialize = () => {
+        // Authorization
+        const client = google.accounts.oauth2.initTokenClient({
+            client_id: env.REACT_APP_GOOGLE_CLIENT_ID,
+            scope: scopes.accountReadonly,
+            callback: handleTokenClient
+        })
+
+        setClient(client);
     };
 
-    function handleCredentialResponse ({ credential }) {
-        const user = jwtDecoder(credential);
-        setUser(user);
-        setHasUser(true);
-    };
+    function handleTokenClient(tokenResponse) {
+        console.log('tokenResponse: ', tokenResponse)
 
-    const renderSignButtonInDiv = (elementDivId) => {
-        window.google.accounts.id.renderButton(
-            document.getElementById(elementDivId),
-            { theme: "outline", size: "large" }
-        );
+        if(!tokenResponse.access_token){
+            signOutHandler();
+            return;
+        }
+
+        setAccessToken(tokenResponse.token_type + ' ' + tokenResponse.access_token);
+    }
+
+
+    function listUpcomingEvents() {
+        window.gapi.client.calendar.events.list();
+    }
+
+    function authorizeHandler() {
+        client.requestAccessToken();
     }
 
     const signOutHandler = () => {
-        setUser({});
-        setHasUser(false);
+        setAccessToken('');
     }
 
     return (
-        <GoogleAuthContext.Provider value={{ user, hasUser, renderSignButtonInDiv, signOutHandler }}>
+        <GoogleAuthContext.Provider value={{ hasUser, signOutHandler, requestAccessToken: authorizeHandler, client, accessToken }}>
             {children}
         </GoogleAuthContext.Provider>
     )
